@@ -1,0 +1,12 @@
+# Dockerfile content
+
+FROM ubuntu:20.04
+
+RUN apt-get update && apt-get install -y curl
+
+COPY script.sh .
+RUN apt-get update && apt-get install -y dos2unix
+RUN dos2unix script.sh
+CMD ["bash", "/script.sh"]
+
+# i had to use dos2unix without it it woudnt work on windows.

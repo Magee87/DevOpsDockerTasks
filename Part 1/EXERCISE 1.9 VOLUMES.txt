@@ -1,0 +1,5 @@
+on Windows computer i can do it like this.
+
+docker run -v "C:\Users\jesse\Desktop\logs\text.log:/usr/src/app/text.log" devopsdockeruh/simple-web-service
+
+but i have to first create that text.log file on my local PC. or it creates a folder "text.logs" and it wont work, because thats not a text file.. . i dont know how to create a file in windows system like that. but this way that line will work.

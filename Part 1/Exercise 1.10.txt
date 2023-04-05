@@ -1,0 +1,10 @@
+
+
+docker run -p 8080:8080 devopsdockeruh/simple-web-service server
+
+
+browser:
+http://localhost:8080/
+
+content:
+{"message":"You connected to the following path: /","path":"/"}
