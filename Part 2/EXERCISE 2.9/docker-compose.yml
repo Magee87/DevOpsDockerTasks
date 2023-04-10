@@ -1,0 +1,56 @@
+## docker-compose.yml
+## this version is using images, what i made on previous task.
+
+version: "3.9"
+
+services:
+  frontend:
+    image: frontv1
+    container_name: front
+    ports:
+      - "5000:5000"
+      
+  backend:
+    image: backv1
+    container_name: back
+    environment:
+      - POSTGRES_DATABASE=postgres
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=salasana
+      - POSTGRES_HOST=back-db
+      - REDIS_HOST=back-redis
+    ports:
+      - "8080:8080"
+    
+    
+  redis:
+    image: redis
+    container_name: back-redis
+#default port (should use that automatic also)
+    ports:
+      - "6379:6379"
+      
+  postgres:
+    image: postgres
+    restart: unless-stopped
+    container_name: back-db
+    environment:
+      - POSTGRES_DATABASE=postgres
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=salasana
+#default port (should use that automatic also)
+    ports:
+      - "5432:5432"
+    volumes:
+      - "C:/Users/jesse/Desktop/Koulutus_2022-2023/DevOps/part2/database:/var/lib/postgresql/data"
+      
+      
+      
+  nginx:
+    image: nginx
+    restart: unless-stopped
+    container_name: nginx_c
+    ports:
+      - "80:80"
+    volumes:
+      - "C:/Users/jesse/Desktop/Koulutus_2022-2023/DevOps/part2/nginx.conf:/etc/nginx/nginx.conf"

@@ -1,0 +1,55 @@
+version: "3.9"
+
+services:
+  frontend:
+    image: frontv1
+    container_name: front
+      
+  backend:
+    image: backv1
+    container_name: back
+    environment:
+      - POSTGRES_DATABASE=postgres
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=salasana
+      - POSTGRES_HOST=back-db
+      - REDIS_HOST=back-redis
+    
+  redis:
+    image: redis
+    container_name: back-redis
+      
+  postgres:
+    image: postgres
+    restart: unless-stopped
+    container_name: back-db
+    environment:
+      - POSTGRES_DATABASE=postgres
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=salasana
+    volumes:
+      - "C:/Users/jesse/Desktop/Koulutus_2022-2023/DevOps/part2/database:/var/lib/postgresql/data"
+      
+      
+  nginx:
+    image: nginx
+    restart: unless-stopped
+    container_name: nginx_c
+    ports:
+      - "80:80"
+    volumes:
+      - "C:/Users/jesse/Desktop/Koulutus_2022-2023/DevOps/part2/nginx.conf:/etc/nginx/nginx.conf"
+
+
+# nmap result with docker-compose.yml on above
+#docker run -it --rm --network host networkstatic/nmap localhost
+#Starting Nmap 7.92 ( https://nmap.org ) at 2023-04-10 15:25 UTC
+#Nmap scan report for localhost (127.0.0.1)
+#Host is up (0.0000030s latency).
+#Other addresses for localhost (not scanned): ::1
+#Not shown: 998 closed tcp ports (reset)
+#PORT    STATE    SERVICE
+#80/tcp  filtered http
+#111/tcp open     rpcbind
+
+#Nmap done: 1 IP address (1 host up) scanned in 1.39 seconds

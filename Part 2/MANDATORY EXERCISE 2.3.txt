@@ -1,0 +1,17 @@
+## docker-compose.yml
+## this version is using images, what i made on previous task.
+
+version: "3.9"
+
+services:
+  frontend:
+    image: front
+    ports:
+      - 5000:5000
+    container_name: front
+
+  backend:
+    image: back
+    ports:
+      - 8080:8080
+    container_name: back

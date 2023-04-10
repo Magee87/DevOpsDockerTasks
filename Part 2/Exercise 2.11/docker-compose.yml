@@ -1,0 +1,14 @@
+# Specify the version of Docker Compose to use
+version: "3.9"
+
+# Define the services for the project
+services:
+  # Define a service named "web"
+  web:
+    # Build the Dockerfile in the current directory
+    build: .
+    # Set the name of the container
+    container_name: mywebserver
+    # Expose port 3000 on the host and map it to port 3000 in the container
+    ports:
+      - "3000:3000"

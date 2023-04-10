@@ -1,0 +1,5 @@
+
+docker-compose up --scale compute=2
+
+or if u wanna beat it faster use
+compute=3 ,compute=4,compute=5 etc.. :)

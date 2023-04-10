@@ -1,0 +1,17 @@
+
+## docker-compose.yml
+
+version: "3.9"
+
+services:
+  simple-web-service:
+    image: devopsdockeruh/simple-web-service
+    volumes:
+      - C:\Users\jesse\Desktop\logs\text.log:/usr/src/app/text.log
+
+## !!! For windows i have to use exact path to file, file need to be exists, 
+## other reason can be also because i have modified security settings.
+## For linux ./logs should work correctly.
+
+
+## Exec with -> docker-compose up

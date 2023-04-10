@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>The Force is Strong with Docker</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+	<h1>The Force is Strong with Docker</h1>
+	<p>Welcome to Star Wars-style simple website! Here, we'll explain how we used Docker to create a development environment for our project. </p>
+	<div class="container">
+		<div class="box">
+			<h2>Step 1: Dockerfile</h2>
+			<p>First, we created a Dockerfile to specify the configuration of our container. We chose to use an Alpine-based image and Node.js installed. We also specified the working directory and copied our project files into the container.</p>
+		</div>
+		<div class="box">
+			<h2>Step 2: docker-compose.yml</h2>
+			<p>Next, we created a docker-compose.yml file to define our services. We specified the name of our service, the build context (where our Dockerfile is located), and the ports to expose.</p>
+		</div>
+		<div class="box">
+			<h2>Step 3: Start the container</h2>
+			<p>Finally, we started the container using the <code>docker-compose up</code> command. This created our development environment  accessible on our local machine at <code>localhost:3000</code></p>
+		</div>
+		<div class="box">
+			<h2>Step 4: Site data</h2>
+			<p>Meanwhile, this site data is collected from html directory. First we fetch index.html and then we collect all other files like this style.css file what gives little bit style to this site.</p>
+		</div>
+	</div>
+</body>
+</html>

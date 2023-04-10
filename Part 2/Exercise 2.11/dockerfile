@@ -1,0 +1,20 @@
+# Use the official Node.js 14 Alpine image as the base image
+FROM node:14-alpine
+
+# Set the working directory to /app
+WORKDIR /app
+
+# Copy package.json and package-lock.json to the current directory (/app)
+COPY package*.json ./
+
+# Install the dependencies specified in package.json
+RUN npm install
+
+# Copy all the files in the current directory to /app
+COPY . .
+
+# Expose port 3000 to the outside world
+EXPOSE 3000
+
+# Run the command "npm start" when a container is started from this image
+CMD ["npm", "start"]
