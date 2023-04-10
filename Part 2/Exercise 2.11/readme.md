@@ -3,10 +3,15 @@ This is a sample website that demonstrates how to use Docker to create a develop
 
 ## Files
 **Dockerfile**: This file contains the Docker configuration for the web server. It specifies the base image, sets the working directory, and copies the project files into the container.
+
 **docker-compose.yml**: This file defines the services for the project, including the web server and the Node.js application. It also specifies the ports to expose and the volume mapping.
+
 **server.js** This file defines html directory as static and it fetch files from that folder. and start server with index.html file.
+
 **index.html**: This is the HTML content for the sample website, which explains how the development environment was created using Docker.
+
 **style.css**: This CSS file gives little boost so example site looks better 
+
 *The code is also commented in the files, which describe a little what each step does. except for the html/css file, which is only intended for example.*
 
 
