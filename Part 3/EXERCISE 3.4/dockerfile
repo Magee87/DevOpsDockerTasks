@@ -1,0 +1,95 @@
+
+
+FROM docker:latest
+
+#RUN apk update && apk add bash
+
+WORKDIR /app
+
+COPY builder.sh .
+# chmod komento menee kuitenkin läpi, joten tiedosto siirtyy ja se myös on löytynyt. 
+RUN chmod +x builder.sh
+
+ENTRYPOINT ["/bin/sh","./builder.sh"]
+
+
+
+
+
+
+
+
+
+
+
+FROM node:12
+
+WORKDIR /usr/src/app
+
+# Copy the script file
+COPY builder.sh .
+
+# Set the file permissions
+RUN chmod +x builder.sh
+
+# Set the entrypoint to the script file
+ENTRYPOINT ["/bin/sh", "/usr/src/app/builder.sh"]
+
+#/usr/src/app/builder.sh: line 5: $'\r': command not found
+#Cloning into 'express_app'...
+#fatal: unable to access 'https://github.com/mluukkai/express_app .git/': The requested URL returned error: 400
+#/usr/src/app/builder.sh: line 8: cd: $'express_app\r\r': No such file or directory
+#/usr/src/app/builder.sh: line 9: $'\r': command not found
+#/usr/src/app/builder.sh: line 10: $'\r': command not found
+#/usr/src/app/builder.sh: line 26: syntax error: unexpected end of file
+
+
+
+
+
+
+#FROM node:12
+
+#WORKDIR /usr/src/app
+
+
+#COPY builder.sh /usr/src/app/builder.sh
+
+
+#RUN chmod +x /usr/src/app/builder.sh
+
+#ENTRYPOINT ["/usr/src/app/builder.sh"]
+
+
+
+
+
+
+
+
+
+#FROM docker:latest
+
+#RUN apk update && apk add bash
+
+WORKDIR /app
+
+#COPY builder.sh .
+# chmod komento menee kuitenkin läpi, joten tiedosto siirtyy ja se myös on löytynyt. 
+#RUN chmod +x builder.sh
+#ENTRYPOINT builder.sh
+#ENTRYPOINT ["./builder.sh"]
+#CMD["mluukkai/express_app", "magee87/testing2"]
+# CMD ["./builder.sh"] /usr/local/bin/docker-entrypoint.sh: exec: line 61: mluukkai/express_app: not found
+
+
+
+# Olen Windows käyttäjä ja kokeilut bin bash variaatioita, erilaisilla virhe ilmauksilla. positiivista kuitenkin että tiedosto löytyy välillä..
+#docker run -e DOCKER_USER=magee87 -e DOCKER_PWD=password -v /var/run/docker.sock:/var/run/docker.sock builder mluukkai/express_app mluukkai/testing2
+
+#docker run -e DOCKER_USER=magee87 -e DOCKER_PWD=password -v //var/run/docker.sock:/var/run/docker.sock builder mluukkai/express_app magee87/testing2
+
+
+
+
+

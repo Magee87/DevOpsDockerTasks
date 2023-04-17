@@ -1,0 +1,29 @@
+# Build stage
+FROM node:14-alpine3.13 AS build
+
+WORKDIR /app
+
+COPY package*.json ./
+
+RUN npm install
+
+COPY . .
+
+RUN npm run build
+
+# Final stage
+FROM node:14-alpine3.13
+
+WORKDIR /app
+
+COPY --from=build /app/build /app
+
+RUN npm install -g serve && \
+    addgroup -S nonroot && \
+    adduser -S nonroot -G nonroot
+
+USER nonroot
+
+EXPOSE 5000
+
+CMD ["serve", "-s", "-l", "5000", "."]

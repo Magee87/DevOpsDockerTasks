@@ -1,0 +1,13 @@
+#BACKEND
+
+FROM golang:1.16-alpine
+WORKDIR /app
+COPY . /app
+RUN apk add --no-cache shadow && \
+    adduser -u 10001 -D nonroot && \
+    chown -R nonroot:nonroot /app && \
+    go build -o server .
+USER nonroot
+ENV PORT=8080
+EXPOSE 8080
+CMD ["./server"]

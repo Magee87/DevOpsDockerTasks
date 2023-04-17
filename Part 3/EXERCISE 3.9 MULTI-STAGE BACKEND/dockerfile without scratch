@@ -1,0 +1,23 @@
+FROM golang:1.16.7-alpine3.14 AS builder
+
+WORKDIR /app
+
+COPY . /app
+
+RUN apk add --no-cache git && \
+    go get -d -v && \
+    go build -ldflags="-w -s" -o /app/server .
+
+
+
+FROM alpine:3.14
+
+WORKDIR /app
+
+COPY --from=builder /app/server /app/server
+
+RUN addgroup -S nonroot && adduser -S nonroot -G nonroot
+
+USER nonroot
+
+CMD ["./server"]

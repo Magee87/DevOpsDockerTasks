@@ -1,0 +1,25 @@
+REPOSITORY      	 TAG       IMAGE ID       CREATED             SIZE
+frontend-after-a  	latest    8e7e34087e03   3 minutes ago       582MB
+frontend-after   	latest    fe4dc477e1c1   6 minutes ago       584MB
+backend-after-a   	latest    9f29691bf2bd   About a minute ago   484MB
+backend-after    	latest    3c053ab9e950   15 minutes ago      485MB
+frontend        	latest    ae98363c055c   About an hour ago   586MB
+backend         	latest    9e8b0816ccd1   About an hour ago   487MB
+
+
+frontend-after-a	582MB -4MB
+frontend-after		584MB -2MB
+frontend		586MB  Start
+
+backend-after-a   	484MB -3MB
+backend-after		485MB -2MB
+backend			487MB  Start
+
+
+
+For this i made these changes, i think i have different what was planned, but its hard to get any smaller. i tried different versions and these seems to be smallest working ones. on below there is info what i did.
+
+Frontend-after --> frontend-after-a	-2MB
+FROM node:14-alpine --> FROM node:14-alpine3.13
+backend-after --> backend-after-a  -1MB (it could be exact same version) 
+FROM golang:1.16-alpine --> FROM golang:1.16.7-alpine3.14

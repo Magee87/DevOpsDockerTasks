@@ -1,0 +1,23 @@
+
+FROM golang:1.16 AS build-env
+
+WORKDIR /usr/src/app
+
+COPY . .
+
+ENV CGO_ENABLED=0
+RUN go build -o /usr/src/app/server
+
+
+
+FROM scratch
+
+EXPOSE 8080
+
+WORKDIR /usr/src/app
+
+COPY --from=build-env /usr/src/app/server /usr/src/app/server
+
+USER 1000:1000
+
+ENTRYPOINT [ "/usr/src/app/server" ]
